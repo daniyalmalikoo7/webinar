@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-scroll";
+import { AuthContext } from "../context/AuthContext";
 
 const Card = ({ post }) => {
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const date = post?.created_at.split(" ")[0];
   const newDate = new Date(date);
   const epochDate = newDate.setDate(newDate.getDate() + 10);
@@ -23,7 +29,21 @@ const Card = ({ post }) => {
           : "NOT AVAILABLE"}
       </p>
       <div className="text-[#6BB718]">
-        <span>Register Now</span>
+        {!user?.token ? (
+          <span
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
+            Register Now
+          </span>
+        ) : (
+          <span>
+            <Link to="register" spy={true} smooth={true}>
+              Register Now
+            </Link>
+          </span>
+        )}
       </div>
     </div>
   );

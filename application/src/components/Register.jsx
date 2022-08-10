@@ -4,7 +4,10 @@ import CountryCode from "../CountryCode.json";
 const Register = ({ posts }) => {
   const [countryCode, setCountryCode] = useState(CountryCode);
 
-  console.log(posts);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div
       id="register"
@@ -20,7 +23,7 @@ const Register = ({ posts }) => {
         </p>
       </div>
       <div className="mt-5 md:mt-0 md:col-span-2 max-w-[580px] mx-auto">
-        <form action="#" method="POST">
+        <form onSubmit={handleSubmit}>
           <div className="overflow-hidden sm:rounded-md">
             <div className=" bg-white">
               <div className="grid grid-cols-6 gap-6">

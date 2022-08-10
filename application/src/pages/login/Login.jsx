@@ -8,7 +8,6 @@ const Login = () => {
   const email = useRef();
   const password = useRef();
   const { user, isFetching, error, dispatch } = useContext(AuthContext);
-  console.log(dispatch, AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,8 +17,6 @@ const Login = () => {
     );
   };
 
-  console.log(user);
-
   return (
     <div className="login">
       <div className="loginWrapper">
@@ -28,6 +25,11 @@ const Login = () => {
         </div>
         <div className="loginRight">
           <form className="loginBox" onSubmit={handleSubmit}>
+            {user && (
+              <p className="text-center text-red-700 uppercase mb-2 animate-pulse">
+                {user}
+              </p>
+            )}
             <input
               type="email"
               placeholder="Email"

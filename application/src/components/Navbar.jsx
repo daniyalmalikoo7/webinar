@@ -132,12 +132,22 @@ export default function Navbar() {
         </div>
         <div>
           {user?.token ? (
-            <button
-              onClick={() => handleLogout()}
-              className="px-6 py-2 text-[#01254F]  bg-white rounded-sm shadow border border-[#01254F] hover:bg-gray-100"
-            >
-              Logout
-            </button>
+            <div className="hidden space-x-2 md:inline-block">
+              <button
+                onClick={() => handleLogout()}
+                className="px-6 py-2 text-[#01254F]  bg-white rounded-sm shadow border border-[#01254F] hover:bg-gray-100"
+              >
+                Logout
+              </button>
+              <a
+                href="javascript:void(0)"
+                className="px-4 py-2 text-white bg-[#01254F] rounded-sm shadow border border-[#01254F] hover:bg-gray-800"
+              >
+                <Link to="register" spy={true} smooth={true}>
+                  Register
+                </Link>
+              </a>
+            </div>
           ) : (
             <div className="hidden space-x-2 md:inline-block">
               <a
