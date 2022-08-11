@@ -3,15 +3,35 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-scroll";
 import { AuthContext } from "../context/AuthContext";
 
-const Card = ({ post }) => {
+const Card = ({ post, myList }) => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-
   const date = post?.created_at.split(" ")[0];
   const newDate = new Date(date);
   const epochDate = newDate.setDate(newDate.getDate() + 10);
   const seminarDate = new Date(epochDate);
   const formattedSeminarDate = seminarDate.toLocaleString("en-US");
+
+  const unRegisterPost = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:3003/favourites/posts/${post?.id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+        // {{url}}/favourites/post/id,
+      );
+      const json = await response.json();
+      console.log(json);
+      // setMyWebinarList(json?.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="mx-5 my-2 p-4 h-[300px] flex flex-col justify-between  border border-sm bg-white">
@@ -37,12 +57,14 @@ const Card = ({ post }) => {
           >
             Register Now
           </span>
-        ) : (
+        ) : !myList ? (
           <span>
             <Link to="register" spy={true} smooth={true}>
               Register Now
             </Link>
           </span>
+        ) : (
+          <span onClick={unRegisterPost}>Unregister</span>
         )}
       </div>
     </div>

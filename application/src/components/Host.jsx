@@ -2,7 +2,7 @@ import React from "react";
 
 const Host = () => {
   return (
-    <div className="py-16 px-14 flex flex-col lg:flex-row">
+    <div className="py-16 px-14 flex flex-col  items-center lg:flex-row">
       <div className="flex-1 mx-5 my-2">
         <h1 className="text-2xl text-[#01254F]">
           Meet Your Host - Alistair Schultz

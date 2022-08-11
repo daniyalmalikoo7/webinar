@@ -30,6 +30,12 @@ const Login = () => {
                 {user}
               </p>
             )}
+            {error && (
+              <p className="text-center text-red-700 uppercase mb-2 animate-pulse">
+                {error}
+              </p>
+            )}
+
             <input
               type="email"
               placeholder="Email"

@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
@@ -21,7 +22,25 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>ACY WEBINAR</title>
+    <!-- <meta name="viewport" content="initial-scale=0.30, maximum-scale=0.50, minimum-scale=0.25, width=device-width, user-scalable=yes"> -->
   </head>
+  <script>
+    var isMobile = /iPhone|iPod|Android|BlackBerry/.test(navigator.userAgent);
+    isTablet = /iPad/.test(navigator.userAgent);
+    if (isMobile) {
+      document.write(
+        '<meta name="viewport" content="initial-scale=0.30, maximum-scale=0.50, minimum-scale=0.25, width=device-width, user-scalable=yes">'
+      );
+    } else if (isTablet) {
+      document.write(
+        '<meta name="viewport" content="initial-scale=0.95, maximum-scale=0.95, width=device-width, user-scalable=no">'
+      );
+    } else {
+      document.write(
+        '<meta name="viewport" content="initial-scale=0.80, maximum-scale=0.80, width=device-width, user-scalable=no">'
+      );
+    }
+  </script>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
